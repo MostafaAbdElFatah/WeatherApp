@@ -1,0 +1,49 @@
+{
+  "cities": [
+    {
+      "id": 359796,
+      "name": "Suez",
+      "country": "EG",
+      "coord": {
+        "lon": 32.526272,
+        "lat": 29.973709
+      }
+    },
+    {
+      "id": 360502,
+      "name": "Luxor",
+      "country": "EG",
+      "coord": {
+        "lon": 32.642101,
+        "lat": 25.698931
+      }
+    },
+    {
+      "id": 360630,
+      "name": "Cairo",
+      "country": "EG",
+      "coord": {
+        "lon": 31.24967,
+        "lat": 30.06263
+      }
+    },
+    {
+      "id": 323784,
+      "name": "Ankara",
+      "country": "TR",
+      "coord": {
+        "lon": 32.833328,
+        "lat": 39.916672
+      }
+    },
+    {
+      "id": 361055,
+      "name": "Ismailia",
+      "country": "EG",
+      "coord": {
+        "lon": 32.272251,
+        "lat": 30.604271
+      }
+    }
+  ]
+}
