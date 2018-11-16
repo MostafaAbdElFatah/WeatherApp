@@ -1,6 +1,7 @@
 package com.example.mostafa.weatherapp.Utilities;
 
 import com.example.mostafa.weatherapp.Model.Cities;
+import com.example.mostafa.weatherapp.Model.CityInfo;
 
 public class URLs {
 
@@ -17,9 +18,9 @@ public class URLs {
         return stringUrl;
     }
 
-    public static String getforecastingOfCityURL(Cities.City city){
+    public static String getforecastingOfCityURL(CityInfo cityInfo){
         String stringUrl= URLs.mainURL + URLs.forecastingURL
-                + "q="+city.getName() + "," +city.getCountry() + URLs.apiKey;
+                +  cityInfo.getName() + "," + cityInfo.getSys().getCountry() + URLs.apiKey;
         return stringUrl;
     }
 }

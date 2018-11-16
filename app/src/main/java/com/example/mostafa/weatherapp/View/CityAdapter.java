@@ -6,22 +6,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mostafa.weatherapp.Model.CityInfo;
+import com.example.mostafa.weatherapp.Model.Forecast;
 import com.example.mostafa.weatherapp.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class CityAdapter extends RecyclerView.Adapter<CityAdapter.Holder> {
 
-    List<CityInfo> mCityInfoList;
-    OnClickedListener listener;
+    private Type mType;
+    private List<Object> mCityInfoList;
+    private OnClickedListener listener;
 
-    public CityAdapter(List<CityInfo> mCityInfoList){
+
+    public CityAdapter( Type type , List<Object> mCityInfoList){
         this.mCityInfoList = mCityInfoList;
+        this.mType = type;
     }
 
     public void setOnClickedListener(OnClickedListener listener){
@@ -40,10 +42,18 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.Holder> {
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
 
-        CityInfo mCityInfo = this.mCityInfoList.get(position);
+        if (this.mType == Type.CurrentWeather){
+            CityInfo mCityInfo = (CityInfo) this.mCityInfoList.get(position);
+            holder.cityNameTextView.setText(mCityInfo.getName());
+            holder.cityTempTextView.setText(String.valueOf(mCityInfo.getMain().getTemp()));
+        }else if (this.mType == Type.ForecastDays){
+            Forecast.ForecastList forecastList = (Forecast.ForecastList) this.mCityInfoList.get(position);
+            String stringDate = forecastList.getDt_txt().substring(0, 10);
+            holder.cityNameTextView.setText(stringDate);
+            holder.cityTempTextView.setText(String.valueOf(forecastList.getMain().getTemp()));
+        }
 
-        holder.cityNameTextView.setText(mCityInfo.getName());
-        holder.cityTempTextView.setText(String.valueOf(mCityInfo.getMain().getTemp()));
+
     }
 
     @Override
@@ -73,4 +83,8 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.Holder> {
         public void onClicked(int position);
     }
 
+    public enum Type{
+        CurrentWeather,
+        ForecastDays
+    }
 }

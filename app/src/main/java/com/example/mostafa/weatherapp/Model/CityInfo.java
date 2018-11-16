@@ -1,8 +1,12 @@
 package com.example.mostafa.weatherapp.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class CityInfo {
+public class CityInfo implements Serializable {
 
     /**
      * coord : {"lon":31.24,"lat":30.05}
@@ -128,7 +132,8 @@ public class CityInfo {
         this.weather = weather;
     }
 
-    public static class Coord {
+
+    public static class Coord implements Serializable {
         /**
          * lon : 31.24
          * lat : 30.05
@@ -154,7 +159,7 @@ public class CityInfo {
         }
     }
 
-    public static class Main {
+    public static class Main implements Serializable {
         /**
          * temp : 295.15
          * pressure : 1020
@@ -210,7 +215,7 @@ public class CityInfo {
         }
     }
 
-    public static class Wind {
+    public static class Wind implements Serializable {
         /**
          * speed : 3.1
          * deg : 340
@@ -236,7 +241,7 @@ public class CityInfo {
         }
     }
 
-    public static class Clouds {
+    public static class Clouds implements Serializable {
         /**
          * all : 40
          */
@@ -252,7 +257,7 @@ public class CityInfo {
         }
     }
 
-    public static class Sys {
+    public static class Sys implements Serializable {
         /**
          * type : 1
          * id : 6392
@@ -318,7 +323,7 @@ public class CityInfo {
         }
     }
 
-    public static class Weather {
+    public static class Weather implements Serializable {
         /**
          * id : 802
          * main : Clouds

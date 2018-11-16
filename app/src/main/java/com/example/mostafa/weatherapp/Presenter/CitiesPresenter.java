@@ -4,18 +4,19 @@ import android.content.Context;
 
 import com.example.mostafa.weatherapp.Model.Cities;
 import com.example.mostafa.weatherapp.Model.CityInfo;
+import com.example.mostafa.weatherapp.Model.Forecast;
 import com.example.mostafa.weatherapp.Model.Network.APIServices;
 import com.example.mostafa.weatherapp.Model.Network.NetworkState;
 import com.example.mostafa.weatherapp.Utilities.ServerResponsed;
-import com.example.mostafa.weatherapp.View.IView;
+import com.example.mostafa.weatherapp.View.ICitiesView;
 
 public class CitiesPresenter {
 
 
-    private IView citiesView;
+    private ICitiesView citiesView;
     private Context mContext;
     public CitiesPresenter(Context citiesView) {
-        this.citiesView = (IView) citiesView;
+        this.citiesView = (ICitiesView) citiesView;
         this.mContext = citiesView;
     }
 
@@ -27,14 +28,14 @@ public class CitiesPresenter {
                 // get city inf
                 APIServices.getWeatherCityInfo(mContext, city, new ServerResponsed() {
                     @Override
-                    public void onResponse(CityInfo response) {
+                    public void onResponse(Object response) {
                         /// update recyclerView with data
-                        citiesView.updateListView(response);
+                        citiesView.updateListView((CityInfo) response);
                     }
 
                     @Override
                     public void onErrorResponse(String error) {
-                        /// show
+                        /// show alertDialog
                         citiesView.showAlertMessage("Server Error", error);
                     }
                 });
@@ -46,7 +47,4 @@ public class CitiesPresenter {
 
     }
 
-    private void getCityInfo(Cities.City city){
-
-    }
 }
