@@ -1,9 +1,12 @@
 package com.example.mostafa.weatherapp.View;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 public class ForecastCityActivity extends AppCompatActivity implements IForecastView {
 
 
+    CityInfo mCityInfo;
     ArrayList<Object> forecastList;
     ForecastPresenter mPresenter;
 
@@ -34,8 +38,8 @@ public class ForecastCityActivity extends AppCompatActivity implements IForecast
         recyclerView = findViewById(R.id.recyclerView);
         progressBar = findViewById(R.id.progressBar);
 
-        CityInfo cityInfo = (CityInfo) getIntent().getSerializableExtra("cityInfo");
-        getSupportActionBar().setTitle(cityInfo.getName());
+        mCityInfo = (CityInfo) getIntent().getSerializableExtra("cityInfo");
+        getSupportActionBar().setTitle(mCityInfo.getName());
         forecastList = new ArrayList<>();
 
         recyclerView.setHasFixedSize(true);
@@ -45,11 +49,35 @@ public class ForecastCityActivity extends AppCompatActivity implements IForecast
         recyclerView.setLayoutManager(mLayoutManager);
 
         mPresenter = new ForecastPresenter(this);
-        mPresenter.getForecastDays(cityInfo);
+        mPresenter.getForecastDays(mCityInfo);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.action_Refresh) {
+            progressBar.setVisibility(View.VISIBLE);
+            mPresenter.getForecastDays(mCityInfo);
+            return true;
+        }else if (id == R.id.action_ContactUs){
+            // open new page the save new year ratio
+            startActivity(new Intent(ForecastCityActivity.this,ContactActivity.class));
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void updateView(ArrayList<Forecast.ForecastList> forecastLists) {
+        this.forecastList.clear();
         this.forecastList.addAll(forecastLists);
         mRecyclerViewAdapter.notifyDataSetChanged();
         progressBar.setVisibility(View.INVISIBLE);

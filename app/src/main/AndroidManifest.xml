@@ -21,7 +21,10 @@
         </activity>
         <activity
             android:name=".View.ForecastCityActivity"
-            android:parentActivityName=".View.CitiesActivity"/>
+            android:parentActivityName=".View.CitiesActivity" />
+        <activity
+            android:name=".View.ContactActivity"
+            android:parentActivityName=".View.CitiesActivity" />
     </application>
 
 </manifest>

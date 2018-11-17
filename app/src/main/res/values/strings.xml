@@ -2,4 +2,7 @@
     <string name="app_name">WeatherApp</string>
     <string name="refresh">Refresh</string>
     <string name="contact">Contact us</string>
+    <string name="contact_desc">You Can Contact Us with Following Email and Phone.</string>
+    <string name="email">m.abdelfatah.fci@gmail.com</string>
+    <string name="phone">01090979425, 01123225111</string>
 </resources>
