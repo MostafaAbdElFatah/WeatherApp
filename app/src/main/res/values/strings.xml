@@ -5,4 +5,6 @@
     <string name="contact_desc">You Can Contact Us with Following Email and Phone.</string>
     <string name="email">m.abdelfatah.fci@gmail.com</string>
     <string name="phone">01090979425, 01123225111</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
