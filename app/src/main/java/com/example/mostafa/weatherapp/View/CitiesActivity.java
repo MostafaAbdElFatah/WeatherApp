@@ -1,14 +1,14 @@
 package com.example.mostafa.weatherapp.View;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
-import com.example.mostafa.weatherapp.Model.CityInfo;
+import com.example.mostafa.weatherapp.Model.Network.CityInfo;
 import com.example.mostafa.weatherapp.Presenter.CitiesPresenter;
 import com.example.mostafa.weatherapp.R;
 import com.example.mostafa.weatherapp.Utilities.AlertManager;
@@ -22,19 +22,18 @@ public class CitiesActivity extends AppCompatActivity implements ICitiesView {
     RecyclerView recyclerView;
     CityAdapter mRecyclerViewAdapter;
     RecyclerView.LayoutManager mLayoutManager;
-
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        cities = new ArrayList<>();
+
         recyclerView = findViewById(R.id.recyclerView);
+        progressBar = findViewById(R.id.progressBar);
+
+        cities = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
-
-        mPresenter = new CitiesPresenter(this);
-        mPresenter.getCities();
-
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewAdapter = new CityAdapter(CityAdapter.Type.CurrentWeather,cities);
         recyclerView.setAdapter(mRecyclerViewAdapter);
@@ -47,6 +46,9 @@ public class CitiesActivity extends AppCompatActivity implements ICitiesView {
                 startActivity(intent);
             }
         });
+
+        mPresenter = new CitiesPresenter(this);
+        mPresenter.getCities();
     }
 
 
@@ -54,6 +56,7 @@ public class CitiesActivity extends AppCompatActivity implements ICitiesView {
     public void updateListView(CityInfo cityInfo) {
         this.cities.add(cityInfo);
         mRecyclerViewAdapter.notifyDataSetChanged();
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override

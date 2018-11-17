@@ -1,7 +1,5 @@
-package com.example.mostafa.weatherapp.Model;
+package com.example.mostafa.weatherapp.Model.Network;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.List;
@@ -35,7 +33,7 @@ public class CityInfo implements Serializable {
     private String name;
     private int cod;
     private List<Weather> weather;
-
+    private String jsonStringCityInfo;
     public Coord getCoord() {
         return coord;
     }
@@ -132,6 +130,13 @@ public class CityInfo implements Serializable {
         this.weather = weather;
     }
 
+    public String getJsonStringCityInfo() {
+        return jsonStringCityInfo;
+    }
+
+    public void setJsonStringCityInfo(String jsonStringCityInfo) {
+        this.jsonStringCityInfo = jsonStringCityInfo;
+    }
 
     public static class Coord implements Serializable {
         /**

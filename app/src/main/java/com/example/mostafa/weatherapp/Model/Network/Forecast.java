@@ -1,4 +1,4 @@
-package com.example.mostafa.weatherapp.Model;
+package com.example.mostafa.weatherapp.Model.Network;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,7 @@ public class Forecast {
     private int cnt;
     private City city;
     private List<ForecastList> list;
+    private String jsonForecastInfo;
 
     public String getCod() {
         return cod;
@@ -53,6 +54,13 @@ public class Forecast {
 
     public void setForecastList(List<ForecastList> forecastList) {
         this.list = forecastList;
+    }
+    public String getJsonForecastInfo() {
+        return jsonForecastInfo;
+    }
+
+    public void setJsonForecastInfo(String jsonForecastInfo) {
+        this.jsonForecastInfo = jsonForecastInfo;
     }
 
     public static class City {

@@ -1,7 +1,7 @@
 package com.example.mostafa.weatherapp.Utilities;
 
-import com.example.mostafa.weatherapp.Model.Cities;
-import com.example.mostafa.weatherapp.Model.CityInfo;
+import com.example.mostafa.weatherapp.Model.Network.Cities;
+import com.example.mostafa.weatherapp.Model.Network.CityInfo;
 
 public class URLs {
 

@@ -7,9 +7,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.mostafa.weatherapp.Model.Cities;
-import com.example.mostafa.weatherapp.Model.CityInfo;
-import com.example.mostafa.weatherapp.Model.Forecast;
 import com.example.mostafa.weatherapp.Utilities.ServerResponsed;
 import com.example.mostafa.weatherapp.Utilities.URLs;
 import com.google.gson.Gson;
@@ -25,6 +22,7 @@ public class APIServices {
             public void onResponse(String response) {
                 Gson gson = new Gson();
                 CityInfo mCityInfo = gson.fromJson(response, CityInfo.class);
+                mCityInfo.setJsonStringCityInfo(response);
                 mServerResponsed.onResponse(mCityInfo);
             }
         }, new Response.ErrorListener() {
@@ -47,6 +45,7 @@ public class APIServices {
             public void onResponse(String response) {
                 Gson gson = new Gson();
                 Forecast mForecast = gson.fromJson(response, Forecast.class);
+                mForecast.setJsonForecastInfo(response);
                 mServerResponsed.onResponse(mForecast);
             }
         }, new Response.ErrorListener() {

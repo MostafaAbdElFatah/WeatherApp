@@ -1,6 +1,6 @@
 package com.example.mostafa.weatherapp.View;
 
-import com.example.mostafa.weatherapp.Model.CityInfo;
+import com.example.mostafa.weatherapp.Model.Network.CityInfo;
 
 
 public interface ICitiesView {

@@ -1,4 +1,4 @@
-package com.example.mostafa.weatherapp.Model;
+package com.example.mostafa.weatherapp.Model.Network;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Cities {
 
