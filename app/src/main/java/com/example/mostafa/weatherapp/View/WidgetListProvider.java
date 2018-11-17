@@ -1,6 +1,5 @@
 package com.example.mostafa.weatherapp.View;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +9,12 @@ import android.widget.RemoteViewsService;
 
 import com.example.mostafa.weatherapp.Model.Database.City;
 import com.example.mostafa.weatherapp.Model.Database.RoomDB;
+import com.example.mostafa.weatherapp.Model.Network.APIServices;
+import com.example.mostafa.weatherapp.Model.Network.Cities;
 import com.example.mostafa.weatherapp.Model.Network.CityInfo;
+import com.example.mostafa.weatherapp.Model.Network.NetworkState;
 import com.example.mostafa.weatherapp.R;
+import com.example.mostafa.weatherapp.Utilities.ServerResponsed;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -20,12 +23,12 @@ import java.util.List;
 public class WidgetListProvider implements RemoteViewsService.RemoteViewsFactory {
 
     private int appWidgetId;
-    private Context context;
+    private Context mContext;
     private ArrayList<CityInfo> mCityInfoList;
     RoomDB.RoomManager mRoomManager;
 
     public WidgetListProvider(Context context, Intent intent) {
-        this.context = context;
+        this.mContext = context;
         this.mCityInfoList = new ArrayList<>();
         mRoomManager = new RoomDB.RoomManager(context);
         appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
@@ -55,6 +58,7 @@ public class WidgetListProvider implements RemoteViewsService.RemoteViewsFactory
         }
     }
 
+
     @Override
     public void onDestroy() {
 
@@ -69,7 +73,7 @@ public class WidgetListProvider implements RemoteViewsService.RemoteViewsFactory
     public RemoteViews getViewAt(int index) {
 
         final RemoteViews remoteRowView = new RemoteViews(
-                context.getPackageName(), R.layout.listview_row_widget);
+                mContext.getPackageName(), R.layout.listview_row_widget);
         CityInfo mCityInfo = mCityInfoList.get(index);
         Log.v("weatherWidget","getViewAt "+mCityInfo.getName());
         remoteRowView.setTextViewText(R.id.city_name_widget, mCityInfo.getName());

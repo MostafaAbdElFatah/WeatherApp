@@ -44,14 +44,6 @@ public abstract class RoomDB extends android.arch.persistence.room.RoomDatabase 
                 mRoomManager.mCityDao().updateCity(newCity);
         }
 
-        public void saveCities(List<City> cityList) {
-            mRoomManager.mCityDao().saveCities(cityList);
-        }
-
-        public City getCity(int id) {
-            return mRoomManager.mCityDao().getCity(id);
-        }
-
         public List<City> getCities() {
             return mRoomManager.mCityDao().getCities();
         }
@@ -66,19 +58,6 @@ public abstract class RoomDB extends android.arch.persistence.room.RoomDatabase 
                 return true;
         }
 
-        public void updateCity(City city) {
-            mRoomManager.mCityDao().updateCity(city);
-        }
-
-        public void deleteCity(City city) {
-            mRoomManager.mCityDao().deleteCity(city);
-        }
-
-        public void deleteAllCities() {
-            mRoomManager.mCityDao().deleteAllCities();
-        }
-
-
         public void saveCityForecast(CityForecast newCityForecast) {
             CityForecast cityForecast = mRoomManager.mCityDao().getCityForecast(newCityForecast.getCityId());
             if (cityForecast == null)
@@ -88,9 +67,6 @@ public abstract class RoomDB extends android.arch.persistence.room.RoomDatabase 
 
         }
 
-        public void saveCitiesForecast(List<CityForecast> cityList) {
-            mRoomManager.mCityDao().saveCityForecast(cityList);
-        }
 
         public CityForecast getCityForecast(int id) {
             return mRoomManager.mCityDao().getCityForecast(id);
@@ -110,16 +86,5 @@ public abstract class RoomDB extends android.arch.persistence.room.RoomDatabase 
                 return true;
         }
 
-        public void updateCityForecast(CityForecast city) {
-            mRoomManager.mCityDao().updateCityForecast(city);
-        }
-
-        public void deleteCityForecast(CityForecast city) {
-            mRoomManager.mCityDao().deleteCityForecast(city);
-        }
-
-        public void deleteAllCitisForecast() {
-            mRoomManager.mCityDao().deleteAllCitiesForecast();
-        }
     }
 }
